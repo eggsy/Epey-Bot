@@ -2,9 +2,9 @@
 node_modules
 package-lock.json
 .env
+dist
 
 # Compiled files
-dist/
 **/*.js
 
 # MacOS-generated files
