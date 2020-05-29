@@ -12,7 +12,7 @@ config();
 export class EpeyBot extends Client {
   name: string;
   desc: string;
-  ownerid: string;
+  ownerId: string;
   commands: Map<string, Command> = new Map();
   prefixes: Array<string>;
 
@@ -21,7 +21,7 @@ export class EpeyBot extends Client {
 
     this.name = config.name;
     this.desc = config.desc;
-    this.ownerid = this.ownerid;
+    this.ownerId = config.ownerId;
 
     config.prefixes.push(`<@${config.id}> `);
     this.prefixes = config.prefixes;
