@@ -4,6 +4,7 @@ package-lock.json
 .env
 
 # Compiled files
+dist
 **/*.js
 
 # MacOS-generated files
