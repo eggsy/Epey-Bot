@@ -14,11 +14,13 @@
   "author": "EGGSY#3388",
   "license": "MIT",
   "dependencies": {
-    "@timeraa/devscript": "Timeraa/DevScript",
     "@types/node": "^14.0.5",
     "dotenv": "^8.2.0",
     "eris": "^0.13.1",
     "terminal-bigtext-generator": "^1.0.1",
     "webscrape": "^2.0.0"
+  },
+  "devDependencies": {
+    "@timeraa/devscript": "Timeraa/DevScript"
   }
 }
