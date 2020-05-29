@@ -1,2 +1,3 @@
-# Epey-Bot
- :dna: Epey verilerini Discord sunucunuzda gösteren bir bot!
+# Epey Discord Bot
+
+🚧 This repository is stil in WIP. Please visit later.
