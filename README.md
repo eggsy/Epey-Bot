@@ -10,6 +10,10 @@
 
 Sürekli aynı IP'den giden istekler, epey.com tarafından reddedilebilir ve devamlı istekler sonrasında IP'nizin yasaklanmasına neden olabilir. Bu yüzden bu bot, herkese açık kullanıma uygun değildir. Kendiniz ufak sunucularınızda kullanabilirsiniz.
 
+## Ekran Görüntüleri
+
+<center><img alt="branding" src="https://the-person-under-this-message.is-inside.me/7qFNVZZI.png" /></center>
+
 ## Kurulum
 
 - Gerekli paketleri ister `yarn`, ister `npm` ile kurun.
