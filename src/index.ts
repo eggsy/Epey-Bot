@@ -1,4 +1,4 @@
-import { config } from "dotenv";
+import { config as loadEnv } from "dotenv";
 import { Config } from "./config";
 import { Client } from "eris";
 import { readdirSync } from "fs";
@@ -7,7 +7,7 @@ import { Command } from "./structures/Command";
 import { print as log } from "terminal-bigtext-generator";
 
 // .env dosyasını yükle.
-config();
+loadEnv({ path: "../.env" });
 
 export class EpeyBot extends Client {
   name: string;
@@ -15,6 +15,7 @@ export class EpeyBot extends Client {
   ownerId: string;
   commands: Map<string, Command> = new Map();
   prefixes: Array<string>;
+  emojis: Map<string, string>;
 
   constructor(config: Config) {
     super(config.token);
@@ -22,6 +23,7 @@ export class EpeyBot extends Client {
     this.name = config.name;
     this.desc = config.desc;
     this.ownerId = config.ownerId;
+    this.emojis = config.emojis;
 
     config.prefixes.push(`<@${config.id}> `);
     this.prefixes = config.prefixes;

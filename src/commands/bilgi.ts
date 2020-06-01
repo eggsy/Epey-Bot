@@ -32,7 +32,8 @@ export default class BilgiCommand extends Command {
           ?.attribs?.src,
         titles = result.$("#oncelikli.row .cell .row1")?.text(),
         values = result.$("#oncelikli.row .cell .row2")?.text(),
-        price = result.$(".fiyat :first-child .urun_fiyat")?.text(),
+        price = result.$(".fiyat > *:not(.onsira) .urun_fiyat")?.[0]
+          ?.children?.[0]?.data,
         rating = result.$("#puan")?.[0]?.attribs?.["data-percent"];
 
       productExtra
@@ -46,19 +47,26 @@ export default class BilgiCommand extends Command {
         fields: [],
         thumbnail: { url: image || "" },
         footer: {
-          text: `Puan: ${rating}/100 - epey.com ile herhangi bir bağı yoktur.`,
+          text: `${
+            rating ? `Puan: ${rating}/100 - ` : ""
+          }epey.com ile herhangi bir bağı yoktur.`,
         },
       };
 
-      for (let item in titles?.split(":")?.slice(0, -1)) {
-        let splitted = {
-          titles: titles.split(":"),
-          values: values.split("\n"),
-        };
+      let splitted: { titles: string[]; values: string[] } = {
+        titles: titles.split(":"),
+        values: values.split("\n"),
+      };
 
+      for (let item in titles?.split(":")?.slice(0, -1)) {
         embed.fields.push({
           name: splitted.titles[item] || "Bilinmiyor",
-          value: splitted.values[item] || "Bilinmiyor",
+          value:
+            splitted.values[item] === " Var" || splitted.values[item] === " Yok"
+              ? `${ctx.bot.emojis.get(
+                  splitted.values[item].toLowerCase().substring(1)
+                )} ${splitted.values[item]}`
+              : splitted.values[item] || "Bilinmiyor",
           inline: true,
         });
       }
@@ -70,10 +78,13 @@ export default class BilgiCommand extends Command {
       });
 
       ctx.channel.createMessage({ embed });
+      ctx.channel.sendTyping();
     } catch (err) {
-      ctx.channel.createMessage(
-        ":no_entry_sign: Bir hata oluştu. Lütfen başka bir ürünle veya daha sonra tekrar deneyin."
-      ).catch(null);
+      ctx.channel
+        .createMessage(
+          ":no_entry_sign: Bir hata oluştu. Lütfen başka bir ürünle veya daha sonra tekrar deneyin."
+        )
+        .catch(null);
 
       ctx.channel.sendTyping();
     }
