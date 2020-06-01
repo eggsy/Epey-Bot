@@ -18,7 +18,7 @@ Sürekli aynı IP'den giden istekler, epey.com tarafından reddedilebilir ve dev
 
 - Gerekli paketleri ister `yarn`, ister `npm` ile kurun.
   - `yarn` ile kuracaklar için: `yarn`
-  - `npm` ile kuracaklar için: `npm`
+  - `npm` ile kuracaklar için: `npm install`
 - Bir `.env` dosyası oluşturun ve içerisine Discord bot tokeninizi içeren `TOKEN` verisini ekleyin.
 - Kodu geliştirici (`dev`) modunda çalıştırın.
   - `yarn` ile: `yarn dev`,
