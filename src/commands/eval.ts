@@ -1,5 +1,5 @@
 import { Command, Params } from "../structures/Command";
-import util from "util";
+import { inspect } from "util";
 
 export default class EvalCommand extends Command {
   name: string = "eval";
@@ -22,7 +22,7 @@ export default class EvalCommand extends Command {
       let result = eval(isAsync ? `(async()=>{${script}})();` : script);
       if ((result as any) instanceof Promise) result = await result;
 
-      result = util.inspect(result, { depth: 0 }).substring(0, 1900);
+      result = inspect(result, { depth: 0 }).substring(0, 1900);
       result = result.replace(ctx.bot.token, "***");
 
       return ctx.channel.createMessage(
