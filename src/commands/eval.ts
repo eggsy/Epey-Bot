@@ -2,11 +2,11 @@ import { Command, Params } from "../structures/Command";
 import { inspect } from "util";
 
 export default class EvalCommand extends Command {
-  name: string = "eval";
-  desc: string = "Canlı kod test etmeye yarar.";
-  ownerOnly: boolean = true;
-  aliases: string[] = ["ev"];
-  usage: string = "eval this";
+  name = "eval";
+  desc = "Canlı kod test etmeye yarar.";
+  ownerOnly = true;
+  aliases = ["ev"];
+  usage = "eval this";
 
   async execute(ctx: Params) {
     if (!ctx.args.length)

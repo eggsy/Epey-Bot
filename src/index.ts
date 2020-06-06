@@ -5,6 +5,7 @@ import { readdirSync } from "fs";
 import { onReady, onMessage } from "./events";
 import { Command } from "./structures/Command";
 import { print as log } from "terminal-bigtext-generator";
+import consola from "consola";
 
 // .env dosyasını yükle.
 loadEnv({ path: "../.env" });
@@ -32,9 +33,11 @@ export class EpeyBot extends Client {
 
   async run() {
     log("EPEY BOT");
-    console.log(
-      `[BİLGİ] Bu bot tamamiyle açık kaynak bir bottur, daha fazla ayrıntı için eggsywashere kullanıcısının depolarını inceleyin`,
-      `\n[BİLGİ] Bu botun epey.com ile herhangi bir bağı bulunmamaktadır. Kaynak kodları açıktır ve düzenlenebilir.`
+    consola.info(
+      `Bu bot tamamiyle açık kaynak bir bottur, daha fazla ayrıntı için eggsywashere kullanıcısının depolarını inceleyin`
+    );
+    consola.info(
+      `Bu botun epey.com ile herhangi bir bağı bulunmamaktadır. Kaynak kodları açıktır ve düzenlenebilir.`
     );
 
     this.loadCommands();
@@ -70,7 +73,7 @@ export class EpeyBot extends Client {
         }
       });
     } catch (err) {
-      return console.error(err.message);
+      return consola.error(err);
     }
   }
 }

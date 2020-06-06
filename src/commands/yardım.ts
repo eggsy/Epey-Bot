@@ -12,8 +12,12 @@ export default class HelpCommand extends Command {
       let message = "",
         added = [];
 
-      ctx.bot.commands.forEach((command: any) => {
-        if (added.includes(command.name)) return;
+      ctx.bot.commands.forEach((command: Command) => {
+        if (
+          added.includes(command.name) ||
+          (command.ownerOnly && ctx.author.id !== ctx.bot.ownerId)
+        )
+          return;
 
         message += `\`${command.name}\`: ${command.desc}\n`;
         added.push(command.name);

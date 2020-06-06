@@ -1,9 +1,10 @@
 import { Guild, Message, TextChannel } from "eris";
 import { Command } from "./structures/Command";
+import consola from "consola";
 
 export function onReady() {
-  console.log(
-    `\n[BAŞARILI] Discord'a başarıyla ${this.user.username}#${this.user.discriminator} kullanıcısıyla bağlanıldı.`
+  consola.success(
+    `Discord'a başarıyla ${this.user.username}#${this.user.discriminator} kullanıcısıyla bağlanıldı.`
   );
   this.editStatus("online", {
     name: "komutlarınızı",
