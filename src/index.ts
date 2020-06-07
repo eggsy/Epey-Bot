@@ -2,7 +2,7 @@ import { config as loadEnv } from "dotenv";
 import { Config } from "./config";
 import { Client } from "eris";
 import { readdirSync } from "fs";
-import { onReady, onMessage } from "./events";
+import { onReady, onMessage, onError } from "./events";
 import { Command } from "./structures/Command";
 import { print as log } from "terminal-bigtext-generator";
 import consola from "consola";
@@ -43,6 +43,7 @@ export class EpeyBot extends Client {
     this.loadCommands();
     this.on("ready", onReady);
     this.on("messageCreate", onMessage);
+    this.on("error", onError);
 
     await this.connect();
   }

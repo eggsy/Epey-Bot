@@ -50,3 +50,7 @@ export async function onMessage(message: Message) {
     });
   }
 }
+
+export function onError(error: NodeJS.ErrnoException) {
+  consola.error(error);
+}

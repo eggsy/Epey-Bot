@@ -1,6 +1,7 @@
 import { Command, Params } from "../structures/Command";
 import { Embed } from "eris";
 import Scraper from "webscrape";
+import consola from "consola";
 
 export default class BilgiCommand extends Command {
   name: string = "bilgi";
@@ -14,15 +15,9 @@ export default class BilgiCommand extends Command {
         ":no_entry_sign: Lütfen bir URL belirttiğinize emin olun. Bu bot şimdilik sadece karmaşık URL'ler ile çalışmaktadır; örnek bir URL: `akilli-telefonlar/samsung-galaxy-s20-ultra`"
       );
 
-    let url: string = ctx.args.join(" ").replace(".html", "");
-    url.startsWith("/") ? (url = url.slice(1)) : false;
+    const url = this.smartSearch(ctx.args);
 
     try {
-      if (url.includes("https://") && url.includes("epey.com")) {
-        let link = new URL(url);
-        url = link.pathname.replace(".html", "");
-      }
-
       ctx.channel.sendTyping();
 
       let result = await Scraper().get(`https://www.epey.com/${url}.html`),
@@ -45,7 +40,9 @@ export default class BilgiCommand extends Command {
         color: 0xd96140,
         description: `\`${product}\` adlı ürün hakkında [daha fazla bilgi](https://www.epey.com/${url}.html).`,
         fields: [],
-        thumbnail: { url: image || "" },
+        thumbnail: {
+          url: image,
+        },
         footer: {
           text: `${
             rating ? `Puan: ${rating}/100 - ` : ""
@@ -88,5 +85,28 @@ export default class BilgiCommand extends Command {
 
       ctx.channel.sendTyping();
     }
+  }
+
+  smartSearch(args): string | boolean {
+    if (!args || !args.length) return null;
+
+    const url = args.join("").replace(".html", "");
+    if (url.includes("https://") && url.includes("epey.com")) {
+      try {
+        const link = new URL(url).pathname.replace(".html", "");
+        return link.startsWith("/") ? link.slice(1) : link;
+      } catch (err) {
+        consola.error(err);
+        return false;
+      }
+    }
+
+    const normalizedTag = args
+      .join("-")
+      .replace(/ı/g, "i")
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+
+    return normalizedTag;
   }
 }
