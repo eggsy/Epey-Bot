@@ -1,5 +1,4 @@
-import { Client, Guild, Member, Message, TextChannel } from "eris";
-import { EpeyBot } from "../index";
+import { Params } from "../../@types";
 
 export abstract class Command {
   abstract name: string;
@@ -8,14 +7,4 @@ export abstract class Command {
   aliases: string[] = [];
   ownerOnly: boolean = false;
   abstract async execute(args: Params);
-}
-
-export interface Params {
-  client: Client;
-  args: string[];
-  message: Message;
-  author: Member;
-  guild: Guild;
-  channel: TextChannel;
-  bot: EpeyBot;
 }

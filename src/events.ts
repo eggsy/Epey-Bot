@@ -25,11 +25,10 @@ export async function onMessage(message: Message) {
 
   if (effectivePrefix == 0) return;
 
-  const command: string = message.content
-    .split(" ")[0]
-    .substring(effectivePrefix);
-
-  const args: string[] = message.content.split(" ").slice(1);
+  const command: string = message.content.substring(effectivePrefix).split(" ")[0];
+  const args: string[] = message.content
+    .split(" ")
+    .slice(message.content.split(" ")[0].length > 10 ? 2 : 1);
 
   if (this.commands.has(command)) {
     const channel: TextChannel = message.channel;

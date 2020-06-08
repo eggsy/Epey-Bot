@@ -1,13 +1,14 @@
-import { Command, Params } from "../structures/Command";
+import { Command } from "../structures/Command";
+import { Params } from "../../@types";
 import { Embed } from "eris";
 import Scraper from "webscrape";
 import consola from "consola";
 
 export default class BilgiCommand extends Command {
-  name: string = "bilgi";
-  desc: string = "Belirtilen ürünün epey.com bilgisini gösterir.";
-  aliases: string[] = ["info", "b"];
-  usage: string = "bilgi <ürün>";
+  name = "bilgi";
+  desc = "Belirtilen ürünün epey.com bilgisini gösterir.";
+  aliases = ["info", "b"];
+  usage = "bilgi <ürün>";
 
   async execute(ctx: Params) {
     if (!ctx.args.length)

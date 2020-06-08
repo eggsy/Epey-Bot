@@ -1,12 +1,13 @@
-import { Command, Params } from "../structures/Command";
+import { Command } from "../structures/Command";
+import { Params } from "../../@types";
 import { Embed } from "eris";
 import Scraper from "webscrape";
 
 export default class PuanCommand extends Command {
-  name: string = "puan";
-  desc: string = "Belirtilen ürünün epey.com puanını gösterir.";
-  aliases: string[] = ["p"];
-  usage: string = "puan <ürün>";
+  name = "puan";
+  desc = "Belirtilen ürünün epey.com puanını gösterir.";
+  aliases = ["p"];
+  usage = "puan <ürün>";
 
   async execute(ctx: Params) {
     if (!ctx.args.length)

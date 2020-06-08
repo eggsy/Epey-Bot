@@ -17,6 +17,7 @@ export class EpeyBot extends Client {
   commands: Map<string, Command> = new Map();
   prefixes: Array<string>;
   emojis: Map<string, string>;
+  private commandCount: number = 0;
 
   constructor(config: Config) {
     super(config.token);
@@ -27,7 +28,9 @@ export class EpeyBot extends Client {
     this.emojis = config.emojis;
 
     config.prefixes.push(`<@${config.id}> `);
+    config.prefixes.push(`<@!${config.id}> `);
     this.prefixes = config.prefixes;
+
     this.run();
   }
 
@@ -66,15 +69,35 @@ export class EpeyBot extends Client {
       files.forEach((name: string) => {
         if (name.endsWith(".map")) return;
 
-        let command: Command = new (require(`./commands/${name}`).default)();
+        const command: Command = new (require(`./commands/${name}`).default)();
         this.commands.set(command.name, command);
 
         for (let alias of command.aliases) {
           this.commands.set(alias, command);
         }
+
+        this.commandCount++;
       });
+
+      consola.info(`${this.commandCount} adet komut yüklendi.`);
     } catch (err) {
       return consola.error(err);
+    }
+  }
+
+  reloadCommand(name: string) {
+    try {
+      const command: Command = new (require(`./commands/${name}`).default)();
+      this.commands.set(command.name, command);
+
+      for (let alias of command.aliases) {
+        this.commands.set(alias, command);
+      }
+
+      return true;
+    } catch (err) {
+      consola.error(err);
+      return false;
     }
   }
 }

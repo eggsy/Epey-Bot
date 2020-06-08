@@ -1,4 +1,5 @@
-import { Command, Params } from "../structures/Command";
+import { Command } from "../structures/Command";
+import { Params } from "../../@types";
 import { inspect } from "util";
 
 export default class EvalCommand extends Command {

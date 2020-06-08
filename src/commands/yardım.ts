@@ -1,11 +1,12 @@
-import { Command, Params } from "../structures/Command";
+import { Command } from "../structures/Command";
+import { Params } from "../../@types";
 import { Embed } from "eris";
 
 export default class HelpCommand extends Command {
-  name: string = "yardım";
-  desc: string = "Komutlar ve botun işlevi hakkında bilgi gösterir.";
-  aliases: string[] = ["help", "y"];
-  usage: string = "yardım <komut>";
+  name = "yardım";
+  desc = "Komutlar ve botun işlevi hakkında bilgi gösterir.";
+  aliases = ["help", "y"];
+  usage = "yardım <komut>";
 
   async execute(ctx: Params) {
     if (!ctx.args?.length) {
