@@ -37,7 +37,7 @@ export class EpeyBot extends Client {
   async run() {
     log("EPEY BOT");
     consola.info(
-      `Bu bot tamamiyle açık kaynak bir bottur, daha fazla ayrıntı için eggsywashere kullanıcısının depolarını inceleyin`
+      `Bu bot tamamiyle açık kaynak bir bottur, daha fazla ayrıntı için eggsydev kullanıcısının depolarını inceleyin`
     );
     consola.info(
       `Bu botun epey.com ile herhangi bir bağı bulunmamaktadır. Kaynak kodları açıktır ve düzenlenebilir.`
