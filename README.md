@@ -1,8 +1,4 @@
-# Epey Discord Bot
-
-🚧 Bu depo/bot hâlâ yapım aşamasındadır.
-
-## Açıklama
+## Epey Discord Bot
 
 [epey.com](https://www.epey.com) verilerini, Discord sunucunuzda gösterebileceğiniz basit bir Discord botu. Sistem olarak direkt olarak sunucudan attığı istekle tüm sayfayı işleyip gerekli verileri toplar ve size döndürür.
 
